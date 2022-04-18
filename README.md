@@ -1,8 +1,8 @@
 # pez
-a clipboard dispenser written in rust
+a clipboard dispenser written in `rust`
 
 ## huh?
-#### this tool allows your clipboard to hold multiple items, and will "dispense" them one by one on paste
+#### `pez` allows you to copy multiple items to your clipboard, and then "dispense" them one by one.
 
 ## installation
 ```
