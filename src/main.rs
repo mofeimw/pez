@@ -12,7 +12,7 @@ fn main() {
         .working_directory("/tmp")
         .user("mofei")
         .stdout(stdout)
-        .stderr(stderr)
+        .stderr(stderr);
 
     match daemonize.start() {
         Ok(_) => println!("[pez] launched successfully"),
