@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 rdev = "0.5.1"
 arboard = "2.1.0"
+daemonize = "0.4.1"

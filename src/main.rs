@@ -1,8 +1,24 @@
-use std::{thread, time::Duration};
+use std::{thread, time::Duration, fs::File};
 use rdev::{listen, Event, Key, EventType};
 use arboard::Clipboard;
+use daemonize::Daemonize;
 
 fn main() {
+    let stdout = File::create("/tmp/pez.out").unwrap();
+    let stderr = File::create("/tmp/pez.err").unwrap();
+
+    let daemonize = Daemonize::new()
+        .pid_file("/tmp/pez.pid")
+        .working_directory("/tmp")
+        .user("mofei")
+        .stdout(stdout)
+        .stderr(stderr)
+
+    match daemonize.start() {
+        Ok(_) => println!("[pez] launched successfully"),
+        Err(e) => eprintln!("error, {}", e),
+    }
+
     let mut clipboard = Clipboard::new().unwrap();
     let mut clip: Vec<String> = Vec::new();
 
@@ -40,6 +56,6 @@ fn main() {
     };
 
     if let Err(error) = listen(callback) {
-        println!("Error: {:?}", error)
+        println!("error: {:?}", error)
     }
 }
